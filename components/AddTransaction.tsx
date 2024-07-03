@@ -1,8 +1,16 @@
 'use client'
+import addTrandsaction from '@/app/actions/addTransaction'
 
 export default function AddTransaction() {
 	const clientAction = async (formData: FormData) => {
-		console.log(formData.get('text'), formData.get('amount'))
+		const { data, err } = await addTrandsaction(formData)
+
+		if (err) {
+			alert(err)
+		} else {
+			alert('Transaction added')
+			console.log(data)
+		}
 	}
 
 	return (
@@ -23,7 +31,12 @@ export default function AddTransaction() {
 						Amount <br />
 						(negative - expense, positive - income)
 					</label>
-					<input type='number' id='amount' placeholder='Enter amount...' />
+					<input
+						type='number'
+						name='amount'
+						id='amount'
+						placeholder='Enter amount...'
+					/>
 				</div>
 				<button className='btn'>Add transaction</button>
 			</form>
