@@ -9,7 +9,7 @@ export default function AddTransaction() {
 		if (err) {
 			toast.error(err)
 		} else {
-			console.log(data)
+			toast.success('Transaction added')
 		}
 	}
 
